@@ -1,7 +1,7 @@
 import { h, Component } from 'ink'
 import PropTypes from 'prop-types'
 import createHistory from 'history/createMemoryHistory'
-import { Broadcast } from '../ink-broadcast'
+import { Broadcast } from 'ink-broadcast'
 
 export default class Router extends Component {
   static propTypes = {
