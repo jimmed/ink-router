@@ -5,5 +5,5 @@
     "transform-object-rest-spread",
     "transform-export-extensions"
   ],
-  "presets": [["env", { "targets": { "node": "8.9" } }]]
+  "presets": [["env", { "targets": { "node": "6" } }]]
 }
