@@ -145,12 +145,12 @@ Command-line arguments are parsed using [yargs-parser][yargs-parser]
 
 It accepts the same props as `Router`, with the following changes:
 
-| Prop             | Description                                                           | Default                     |
-|:-----------------|:----------------------------------------------------------------------|:----------------------------|
-| `args`           | An array of arguments to parse and use as the initial route           | `process.argv.slice(1)`     |
-| `options`        | An optional object of options to pass to [yargs-parser][yargs-parser] | _none_                      |
-| `initialEntries` | An array of history entries to prepend to the initially derived route | `[]`                        |
-| `initialIndex`   | As per `Router`                                                       | `initialEntries.length + 1` |
+| Prop             | Description                                                           | Default                 |
+|:-----------------|:----------------------------------------------------------------------|:------------------------|
+| `args`           | An array of arguments to parse and use as the initial route           | `process.argv.slice(1)` |
+| `options`        | An optional object of options to pass to [yargs-parser][yargs-parser] | _none_                  |
+| `initialEntries` | An array of history entries to prepend to the initially derived route | `[]`                    |
+| `initialIndex`   | As per `Router`                                                       | `initialEntries.length` |
 
 **NOTE:** named parameters will be converted to a URL query string, and thus all parameters will be returned as strings when matched by a `Route`.
 
