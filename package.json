@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "history": "^4.7.2",
+    "ink-broadcast": "^0.1.2",
     "path-to-regexp": "^2.1.0",
     "prop-types": "^15.6.0",
     "yargs-parser": "^9.0.2"
