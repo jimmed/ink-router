@@ -1,6 +1,6 @@
 {
   "name": "ink-router",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Implementation of react-router for ink",
   "main": "dist/index.js",
   "homepage": "https://github.com/jimmed/ink-router",
