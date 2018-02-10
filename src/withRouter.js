@@ -1,6 +1,6 @@
 import { h, Component } from 'ink'
 import PropTypes from 'prop-types'
-import { Subscriber } from '../ink-broadcast'
+import { Subscriber } from 'ink-broadcast'
 
 const withRouter = WrappedComponent => ({
   channel = 'router',
