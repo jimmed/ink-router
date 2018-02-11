@@ -29,7 +29,8 @@ export const transformPathMatch = ([path, ...match], location, keys) => {
 
 export const parseQueryString = query =>
   query.split('&').reduce((acc, pair) => {
+    if (!pair) return acc
     const [key, ...value] = pair.split('=')
-    acc[key] = value.join('=')
+    acc[key] = value.join('=') || true
     return acc
   }, {})
