@@ -44,9 +44,7 @@ export default class Router extends Component {
     }
   }
 
-  handleHistoryAction = (location, action) => {
-    this.setState({ location })
-  }
+  handleHistoryAction = (location) => this.setState({ location })
 
   compareStates = (prev, next) => prev.location.key === next.location.key
 
