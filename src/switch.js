@@ -45,20 +45,24 @@ class Switch extends Component {
   }
 
   matchLocation(location) {
-    return (
-      this.locationMatchers.find((matcher, matchIndex) => {
+    const debug = this.locationMatchers
+    return {
+      debug,
+      ...(this.locationMatchers.find((matcher, matchIndex) => {
         const match = matcher(location)
         return match ? { match, matchIndex } : null
-      }) || {}
-    )
+      }) || {})
+    }
   }
 
   setLocation({ location }) {
     this.setState(this.matchLocation(location))
   }
 
-  render({ children, location, history }, { match, matchIndex }) {
-    if (!match) return 'No match'
+  render({ children, location, history }, { debug, match, matchIndex }) {
+    if (!match) {
+      return <Text>No match: {inspect(this.state, { colors: true })}</Text>
+    }
     return children[matchIndex]
   }
 }
