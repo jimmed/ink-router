@@ -1,6 +1,7 @@
 import { h, Text, Component } from 'ink'
 import PropTypes from 'prop-types'
 import { inspect } from 'util'
+import withRouter from './withRouter'
 import { makeLocationMatcher } from './utils'
 
 class Switch extends Component {
