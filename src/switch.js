@@ -1,4 +1,5 @@
 import { h, Text, Component } from 'ink'
+import PropTypes from 'prop-types'
 import { inspect } from 'util'
 import { makeLocationMatcher } from './utils'
 
