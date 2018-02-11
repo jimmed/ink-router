@@ -2,3 +2,4 @@ src/*
 node_modules/*
 README.md
 .circleci/*
+junit.xml

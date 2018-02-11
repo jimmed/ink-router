@@ -28,4 +28,5 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: yarn test
+      - run: yarn test --runInBand --ci --testResultsProcessor="jest-junit"
+        environment: JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"

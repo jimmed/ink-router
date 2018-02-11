@@ -36,7 +36,8 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.1",
-    "jest": "^22.2.2"
+    "jest": "^22.2.2",
+    "jest-junit": "^3.6.0"
   },
   "engines": {
     "node": ">=6"
