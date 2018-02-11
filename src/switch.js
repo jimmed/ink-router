@@ -6,12 +6,14 @@ import { makeLocationMatcher } from './utils'
 
 class Switch extends Component {
   static propTypes = {
-    children: PropTypes.arrayOf(PropTypes.shape({
-      _props: PropTypes.shape({
-        path: PropTypes.string,
-        exact: PropTypes.bool
+    children: PropTypes.arrayOf(
+      PropTypes.shape({
+        _props: PropTypes.shape({
+          path: PropTypes.string,
+          exact: PropTypes.bool
+        })
       })
-    })).isRequired
+    ).isRequired
   }
 
   static defaultProps = {
@@ -28,7 +30,10 @@ class Switch extends Component {
     if (newProps.children !== this.props.children) {
       this.setPathsToMatch(newProps)
     }
-    if (!props.location || newProps.location.key !== this.props.location.key) {
+    if (
+      !this.props.location ||
+      newProps.location.key !== this.props.location.key
+    ) {
       this.setLocation(newProps)
     }
   }
@@ -40,10 +45,12 @@ class Switch extends Component {
   }
 
   matchLocation(location) {
-    return this.locationMatchers.find((matcher, matchIndex) => {
+    return (
+      this.locationMatchers.find((matcher, matchIndex) => {
         const match = matcher(location)
         return match ? { match, matchIndex } : null
       }) || {}
+    )
   }
 
   setLocation({ location }) {
