@@ -147,7 +147,7 @@ It accepts the same props as `Router`, with the following changes:
 
 | Prop             | Description                                                           | Default                 |
 |:-----------------|:----------------------------------------------------------------------|:------------------------|
-| `args`           | An array of arguments to parse and use as the initial route           | `process.argv.slice(1)` |
+| `args`           | An array of arguments to parse and use as the initial route           | `process.argv.slice(2)` |
 | `options`        | An optional object of options to pass to [yargs-parser][yargs-parser] | _none_                  |
 | `initialEntries` | An array of history entries to prepend to the initially derived route | `[]`                    |
 | `initialIndex`   | As per `Router`                                                       | `initialEntries.length` |

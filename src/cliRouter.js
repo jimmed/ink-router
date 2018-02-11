@@ -12,7 +12,7 @@ class CommandLineRouter extends Component {
   }
 
   static defaultProps = {
-    args: process.argv.slice(1),
+    args: process.argv.slice(2),
     initialEntries: []
   }
 
