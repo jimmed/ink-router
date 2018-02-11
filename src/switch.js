@@ -54,13 +54,13 @@ class Switch extends Component {
   }
 
   setLocation({ location }) {
-    this.setState(() => this.matchLocation(location))
+    this.setState(this.matchLocation(location))
   }
 
   render({ children, location, history }, { match, matchIndex }) {
-    if (!match) return null
+    if (!match) return 'No match'
     const { component: Component } = children[matchIndex]
-    if (!Component) return null
+    if (!Component) return 'No Component'
     return <Component match={match} location={location} history={history} />
   }
 }
