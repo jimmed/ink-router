@@ -28,7 +28,7 @@ class Switch extends Component {
     if (newProps.children !== this.props.children) {
       this.setPathsToMatch(newProps)
     }
-    if (newProps.location.key !== this.props.location.key) {
+    if (!props.location || newProps.location.key !== this.props.location.key) {
       this.setLocation(newProps)
     }
   }
@@ -40,12 +40,10 @@ class Switch extends Component {
   }
 
   matchLocation(location) {
-    const { match, matchIndex } =
-      this.locationMatchers.find((matcher, matchIndex) => {
+    return this.locationMatchers.find((matcher, matchIndex) => {
         const match = matcher(location)
         return match ? { match, matchIndex } : null
       }) || {}
-    return { match, matchIndex }
   }
 
   setLocation({ location }) {
