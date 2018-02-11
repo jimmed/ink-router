@@ -59,9 +59,7 @@ class Switch extends Component {
 
   render({ children, location, history }, { match, matchIndex }) {
     if (!match) return 'No match'
-    const { component: Component } = children[matchIndex]
-    if (!Component) return 'No Component'
-    return <Component match={match} location={location} history={history} />
+    return children[matchIndex]
   }
 }
 
