@@ -17,7 +17,13 @@ As much as possible, this project aims to match the behaviour of [react-router][
 It exposes the following components (and higher-order component):
 
 ```js
-import { Router, Route, CommandLineRouter, withRouter } from 'ink-router'
+import {
+  Router,
+  Route,
+  Switch,
+  CommandLineRouter,
+  withRouter
+} from 'ink-router'
 ```
 
 ## `<Router />`
@@ -94,6 +100,71 @@ The rendered component will be passed the following properties:
   location: { ... }, // An object containing the current location from history
   history: { ... }, // The history object from the router
 }
+```
+
+## `<Switch />`
+
+When given a set of `<Route />` as children, this component will only render
+the first that matches the current location.
+
+```js
+import { h, render } from 'ink'
+import { CommandLineRouter, Switch, Route } from 'ink-router'
+import { HomeView, SettingsView } from './views'
+
+render(
+  <CommandLineRouter>
+    <Switch>
+      <Route exact path="/" component={HomeView} />
+      <Route path="/settings" component={SettingsView} />
+    </Switch>
+  </CommandLineRouter>
+)
+```
+
+
+### Providing a fallback route
+
+In the above example, when the user supplies a command of `poop`, the default
+fallback message is shown, providing information about the route supplied.
+
+[![Demo of Switch component](https://asciinema.org/a/i9FLuYX6aD9RGc8cdZ9N2MXYL.png)](https://asciinema.org/a/i9FLuYX6aD9RGc8cdZ9N2MXYL)
+
+You can override this message by providing a catch-all route as the last child
+of your `<Switch />`:
+
+```js
+import { h, render } from 'ink'
+import { CommandLineRouter, Switch, Route } from 'ink-router'
+import { HomeView, SettingsView, NotFoundView } from './views'
+
+render(
+  <CommandLineRouter>
+    <Switch>
+      <Route exact path="/" component={HomeView} />
+      <Route path="/settings" component={SettingsView} />
+      <Route path="/" component={NotFoundView} />
+    </Switch>
+  </CommandLineRouter>
+)
+```
+
+Alternatively, you can pass the component to render as the `notFound` prop of your
+`<Switch />`, although support for this may be removed in future:
+
+```js
+import { h, render } from 'ink'
+import { CommandLineRouter, Switch, Route } from 'ink-router'
+import { HomeView, SettingsView, NotFoundView } from './views'
+
+render(
+  <CommandLineRouter>
+    <Switch notFound={NotFoundView}>
+      <Route exact path="/" component={HomeView} />
+      <Route path="/settings" component={SettingsView} />
+    </Switch>
+  </CommandLineRouter>
+)
 ```
 
 ## `withRouter(WrappedComponent)`
