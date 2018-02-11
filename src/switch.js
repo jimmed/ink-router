@@ -45,7 +45,7 @@ class Switch extends Component {
   }
 
   setPathsToMatch({ children }) {
-    this.locationMatchers = children.map(({ _props: { path, exact } }) =>
+    this.locationMatchers = children.map(({ _props: { path = '/', exact } }) =>
       makeLocationMatcher(path, exact)
     )
   }
