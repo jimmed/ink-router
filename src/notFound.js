@@ -11,7 +11,9 @@ const NotFound = ({ location = {}, children = [] }) => (
     <div>
       <Text white>
         No route was found that matches the path:{' '}
-        {inspect(location.pathname, { colors: true })}
+        <Text italic green>
+          {location.pathname}
+        </Text>
       </Text>
     </div>
     <br />
