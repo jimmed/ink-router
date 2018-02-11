@@ -22,7 +22,7 @@ export const transformPathMatch = ([path, ...match], location, keys) => {
     ? parseQueryString(location.search.slice(1))
     : {}
 
-  const params = { ...pathParams, ...queryParams }
+  const params = { ...pathParams, ...queryParams, ...location.state }
 
   return { path, params }
 }

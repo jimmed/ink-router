@@ -23,10 +23,10 @@ class CommandLineRouter extends Component {
     initialIndex = initialEntries.length,
     ...restProps
   }) {
-    const initialPath = argsToPath(argParser(args, options))
+    const initialLocation = argsToLocation(argParser(args, options))
     return (
       <Router
-        initialEntries={[...initialEntries, initialPath]}
+        initialEntries={[...initialEntries, initialLocation]}
         initialIndex={initialIndex}
         {...restProps}
       />
@@ -34,12 +34,9 @@ class CommandLineRouter extends Component {
   }
 }
 
-const argsToPath = ({ _: path, ...params }) => {
-  const basePath = `/${path.join('/')}`
-  const queryString = Object.entries(params)
-    .map(([key, value]) => `${key}=${value}`)
-    .join('&')
-  return `${basePath}${queryString ? `?${queryString}` : ''}`
+const argsToLocation = ({ _: basePath, ...params }) => {
+  const pathname = `/${basePath.join('/')}`
+  return { pathname, state: params }
 }
 
 export default CommandLineRouter
