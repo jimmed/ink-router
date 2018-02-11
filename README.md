@@ -19,9 +19,9 @@ It exposes the following components (and higher-order component):
 ```js
 import {
   Router,
+  CommandLineRouter,
   Route,
   Switch,
-  CommandLineRouter,
   withRouter
 } from 'ink-router'
 ```
@@ -51,6 +51,25 @@ Accepts the following props:
 | `children`            | A single child element to render                                                                                                                     | _required_ |
 | `channel`             | The name of the channel to use with [ink-broadcast][ink-broadcast] internally                                                                        | `router`   |
 | `getUserConfirmation` | A function to use to confirm navigation.<br /><br />**NOTE:** There is no `<Prompt />` component yet, and as such no need for `getUserConfirmation`. | _none_     |
+
+## `<CommandLineRouter />`
+
+Provides an instance of Router, with its initial route set based on the arguments
+passed to the current process. In other words, it translates command-line arguments
+to a path that your application can use for routing, and other decisions.
+
+Command-line arguments are parsed using [yargs-parser][yargs-parser].
+
+It accepts the same props as `Router`, with the following changes:
+
+| Prop             | Description                                                           | Default                 |
+|:-----------------|:----------------------------------------------------------------------|:------------------------|
+| `args`           | An array of arguments to parse and use as the initial route           | `process.argv.slice(2)` |
+| `options`        | An optional object of options to pass to [yargs-parser][yargs-parser] | _none_                  |
+| `initialEntries` | An array of history entries to prepend to the initially derived route | `[]`                    |
+| `initialIndex`   | As per `Router`                                                       | `initialEntries.length` |
+
+**NOTE:** named parameters will be converted to a URL query string, and thus all parameters will be returned as strings when matched by a `Route`.
 
 ## `<Route />`
 
@@ -122,10 +141,9 @@ render(
 )
 ```
 
-
 ### Providing a fallback route
 
-In the above example, when the user supplies a command of `poop`, the default
+In the above example, when the user supplies arguments of `not a route` to the command, the default
 fallback message is shown, providing information about the route supplied.
 
 [![Demo of Switch component](https://asciinema.org/a/i9FLuYX6aD9RGc8cdZ9N2MXYL.png)](https://asciinema.org/a/i9FLuYX6aD9RGc8cdZ9N2MXYL)
@@ -205,25 +223,6 @@ class RedirectAfterTime extends Component {
 
 export default withRouter(RedirectAfterTime)
 ```
-
-## `<CommandLineRouter />`
-
-Provides an instance of Router, with its initial route set based on the arguments
-passed to the current process. In other words, it translates command-line arguments
-to a path that your application can use for routing, and other decisions.
-
-Command-line arguments are parsed using [yargs-parser][yargs-parser]
-
-It accepts the same props as `Router`, with the following changes:
-
-| Prop             | Description                                                           | Default                 |
-|:-----------------|:----------------------------------------------------------------------|:------------------------|
-| `args`           | An array of arguments to parse and use as the initial route           | `process.argv.slice(2)` |
-| `options`        | An optional object of options to pass to [yargs-parser][yargs-parser] | _none_                  |
-| `initialEntries` | An array of history entries to prepend to the initially derived route | `[]`                    |
-| `initialIndex`   | As per `Router`                                                       | `initialEntries.length` |
-
-**NOTE:** named parameters will be converted to a URL query string, and thus all parameters will be returned as strings when matched by a `Route`.
 
 [react-router]: https://github.com/ReactTraining/react-router
 [ink]: https://github.com/vadimdemedes/ink
