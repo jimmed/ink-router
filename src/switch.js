@@ -1,6 +1,7 @@
 import { h, Text, Component } from 'ink'
 import PropTypes from 'prop-types'
 import { inspect } from 'util'
+import NotFound from './notFound'
 import withRouter from './withRouter'
 import { makeLocationMatcher } from './utils'
 
@@ -13,11 +14,16 @@ class Switch extends Component {
           exact: PropTypes.bool
         })
       })
-    ).isRequired
+    ).isRequired,
+    notFound: PropTypes.oneOfType([
+      PropTypes.function,
+      PropTypes.instanceOf(Component)
+    ])
   }
 
   static defaultProps = {
-    children: []
+    children: [],
+    notFound: NotFound
   }
 
   constructor(props, context) {
@@ -45,23 +51,27 @@ class Switch extends Component {
   }
 
   matchLocation(location) {
-    const debug = this.locationMatchers
-    return {
-      debug,
-      ...(this.locationMatchers.find((matcher, matchIndex) => {
+    return (
+      this.locationMatchers.reduce((found, matcher, matchIndex) => {
+        if (found) return found
         const match = matcher(location)
         return match ? { match, matchIndex } : null
-      }) || {})
-    }
+      }, null) || {}
+    )
   }
 
   setLocation({ location }) {
     this.setState(this.matchLocation(location))
   }
 
-  render({ children, location, history }, { debug, match, matchIndex }) {
+  render(
+    { children, location, history, notFound: NotFound },
+    { match, matchIndex }
+  ) {
     if (!match) {
-      return <Text>No match: {inspect(this.state, { colors: true })}</Text>
+      return (
+        <NotFound location={location} history={history} children={children} />
+      )
     }
     return children[matchIndex]
   }
