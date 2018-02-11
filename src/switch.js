@@ -16,7 +16,7 @@ class Switch extends Component {
       })
     ).isRequired,
     notFound: PropTypes.oneOfType([
-      PropTypes.function,
+      PropTypes.func,
       PropTypes.instanceOf(Component)
     ])
   }
