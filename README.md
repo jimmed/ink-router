@@ -69,8 +69,6 @@ It accepts the same props as `Router`, with the following changes:
 | `initialEntries` | An array of history entries to prepend to the initially derived route | `[]`                    |
 | `initialIndex`   | As per `Router`                                                       | `initialEntries.length` |
 
-**NOTE:** named parameters will be converted to a URL query string, and thus all parameters will be returned as strings when matched by a `Route`.
-
 ## `<Route />`
 
 Just like in react-router, this allows you to control the rendering of a component,
