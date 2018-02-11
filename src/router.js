@@ -5,7 +5,16 @@ import { Broadcast } from 'ink-broadcast'
 
 export default class Router extends Component {
   static propTypes = {
-    initialEntries: PropTypes.arrayOf(PropTypes.string.isRequired),
+    initialEntries: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        pathname: PropTypes.string.isRequired,
+        search: PropTypes.string,
+        hash: PropTypes.string,
+        state: PropTypes.any,
+        key: PropTypes.string
+      })
+    ])),
     initialIndex: PropTypes.number,
     keyLength: PropTypes.number,
     getUserConfirmation: PropTypes.func,
