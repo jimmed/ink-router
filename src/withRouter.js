@@ -1,13 +1,12 @@
 import { h, Component } from 'ink'
 import PropTypes from 'prop-types'
-import { Subscriber } from 'ink-broadcast'
+import makeSubscriber from 'ink-broadcast/dist/subscriber'
 
-const withRouter = WrappedComponent => ({
-  channel = 'router',
-  ...restProps
-}) => (
-  <Subscriber channel={channel}>
-    {(state = {}) => <WrappedComponent {...state} {...restProps} />}
+const Subscriber = makeSubscriber('router')
+
+const withRouter = WrappedComponent => (props) => (
+  <Subscriber>
+    {(state = {}) => <WrappedComponent {...props} {...state} />}
   </Subscriber>
 )
 

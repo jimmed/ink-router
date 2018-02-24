@@ -49,7 +49,6 @@ Accepts the following props:
 | `initialIndex`        | The initial index in `initialEntries` at which navigation should begin                                                                               | `0`        |
 | `keyLength`           | The length of `key` to generate to uniquely identify each route                                                                                      | `6`        |
 | `children`            | A single child element to render                                                                                                                     | _required_ |
-| `channel`             | The name of the channel to use with [ink-broadcast][ink-broadcast] internally                                                                        | `router`   |
 | `getUserConfirmation` | A function to use to confirm navigation.<br /><br />**NOTE:** There is no `<Prompt />` component yet, and as such no need for `getUserConfirmation`. | _none_     |
 
 ## `<CommandLineRouter />`

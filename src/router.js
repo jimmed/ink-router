@@ -1,33 +1,35 @@
 import { h, Component } from 'ink'
 import PropTypes from 'prop-types'
 import createHistory from 'history/createMemoryHistory'
-import { Broadcast } from 'ink-broadcast'
+import makeBroadcaster from 'ink-broadcast/dist/broadcast'
+
+const Broadcast = makeBroadcaster('router')
 
 export default class Router extends Component {
   static propTypes = {
-    initialEntries: PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.shape({
-        pathname: PropTypes.string.isRequired,
-        search: PropTypes.string,
-        hash: PropTypes.string,
-        state: PropTypes.any,
-        key: PropTypes.string
-      })
-    ])),
+    initialEntries: PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          pathname: PropTypes.string.isRequired,
+          search: PropTypes.string,
+          hash: PropTypes.string,
+          state: PropTypes.any,
+          key: PropTypes.string
+        })
+      ])
+    ),
     initialIndex: PropTypes.number,
     keyLength: PropTypes.number,
     getUserConfirmation: PropTypes.func,
-    children: PropTypes.node.isRequired,
-    channel: PropTypes.string
+    children: PropTypes.node.isRequired
   }
 
   static defaultProps = {
     initialEntries: ['/'],
     initialIndex: 0,
     keyLength: 6,
-    getUserConfirmation: null,
-    channel: 'router'
+    getUserConfirmation: null
   }
 
   constructor(props, context) {
@@ -53,18 +55,14 @@ export default class Router extends Component {
     }
   }
 
-  handleHistoryAction = (location) => this.setState({ location })
+  handleHistoryAction = location => this.setState({ location })
 
   compareStates = (prev, next) => prev.location.key === next.location.key
 
-  render({ channel, children }, { location }) {
+  render({ children }, { location }) {
     const broadcastValue = { location, history: this.history }
     return (
-      <Broadcast
-        channel={channel}
-        value={broadcastValue}
-        compareValues={this.compareStates}
-      >
+      <Broadcast value={broadcastValue} compareValues={this.compareStates}>
         {children}
       </Broadcast>
     )

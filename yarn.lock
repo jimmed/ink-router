@@ -1569,9 +1569,9 @@ ini@~1.3.0:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
 
-ink-broadcast@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/ink-broadcast/-/ink-broadcast-0.2.0.tgz#8bc4cfc7c377a649835c0c3318ce78ad50eea47d"
+ink-broadcast@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/ink-broadcast/-/ink-broadcast-0.3.0.tgz#2f0a38168f5ec61c160407e0c195471cb59cb650"
   dependencies:
     ink "^0.4.1"
     invariant "^2.2.2"
