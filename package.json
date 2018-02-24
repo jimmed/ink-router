@@ -14,7 +14,7 @@
   "scripts": {
     "build": "babel --out-dir dist src",
     "watch": "yarn run build --watch",
-    "test": "jest",
+    "test": "jest src",
     "prepublishOnly": "yarn run test && yarn run build"
   },
   "dependencies": {
