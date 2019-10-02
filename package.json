@@ -18,12 +18,12 @@
     "prepublishOnly": "yarn run test && yarn run build"
   },
   "dependencies": {
-    "history": "^4.7.2",
+    "history": "^4.10.1",
     "ink": "^0.4.1",
     "ink-broadcast": "^0.3.0",
-    "path-to-regexp": "^2.1.0",
-    "prop-types": "^15.6.0",
-    "yargs-parser": "^9.0.2"
+    "path-to-regexp": "^3.1.0",
+    "prop-types": "^15.7.2",
+    "yargs-parser": "^14.0.0"
   },
   "peerDependencies": {
     "ink": "^0.4.1"

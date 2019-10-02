@@ -1,6 +1,6 @@
 import { h, Component } from 'ink'
 import PropTypes from 'prop-types'
-import createHistory from 'history/createMemoryHistory'
+import { createMemoryHistory } from 'history'
 import makeBroadcaster from 'ink-broadcast/dist/broadcast'
 
 const Broadcast = makeBroadcaster('router')
@@ -34,7 +34,7 @@ export default class Router extends Component {
 
   constructor(props, context) {
     super(props, context)
-    this.history = createHistory({
+    this.history = createMemoryHistory({
       initialEntries: props.initialEntries,
       initialIndex: props.initialIndex,
       keyLength: props.keyLength,
