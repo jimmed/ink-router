@@ -20,15 +20,15 @@ export class Route extends Component {
     location: {}
   }
 
-  constructor(props, context) {
-    super(props, context)
-    this.setPathToMatch(props)
+  constructor(props) {
+    super(props)
+    this.setPathToMatch(this.props)
     this.state = {
-      match: this.matchLocation(props.location)
+      match: this.matchLocation(this.props.location)
     }
   }
 
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps(newProps) {
     if (
       newProps.path !== this.props.path ||
       newProps.exact !== this.props.exact
@@ -48,7 +48,9 @@ export class Route extends Component {
     this.setState({ match: this.matchLocation(location) })
   }
 
-  render({ location, history, component: Component }, { match }) {
+  render() {
+    let { location, history, component: Component } = this.props;
+    let { match } = this.state;
     return (
       match && <Component match={match} location={location} history={history} />
     )

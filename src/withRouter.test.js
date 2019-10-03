@@ -1,10 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Text } from 'ink'
 import { render } from 'ink-testing-library'
 import withRouter from './withRouter'
 import Router from './router'
-import { RouteContext } from './router'
-
 
 describe('withRouter', () => {
   describe('when wrapping a component', () => {

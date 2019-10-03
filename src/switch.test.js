@@ -7,14 +7,14 @@ import Router from './router'
 describe('<Switch />', () => {
   describe('given a single route with default props', () => {
     it('should render the component', () => {
-      const rendered = render(
+      const {lastFrame} = render(
         <Router>
           <Switch>
             <Route component={() => 'Hello'} />
           </Switch>
         </Router>
       )
-      expect(rendered).toBe('Hello')
+      expect(lastFrame()).toBe('Hello')
     })
   })
 

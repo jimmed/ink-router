@@ -27,10 +27,9 @@ class Switch extends Component {
     notFound: NotFound
   }
 
-  constructor(props, context) {
-    super(props, context)
-    this.setPathsToMatch(props)
-    this.state = this.matchLocation(props.location)
+  constructor() {
+    this.setPathsToMatch(this.props)
+    this.state = this.matchLocation(this.props.location)
   }
 
   componentWillReceiveProps(newProps) {
@@ -65,10 +64,9 @@ class Switch extends Component {
     this.setState(this.matchLocation(location))
   }
 
-  render(
-    { children, location, history, notFound: NotFound },
-    { match, matchIndex }
-  ) {
+  render() {
+    let { children, location, history, notFound: NotFound } = this.props
+    let { match, matchIndex } = this.state
     if (!match) {
       return (
         <NotFound location={location} history={history} children={children} />
