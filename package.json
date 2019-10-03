@@ -10,6 +10,10 @@
     "type": "git"
   },
   "author": "Jim O'Brien <jim@jimmed.net>",
+  "contributors": [{
+    "name": "Megrez Lu",
+    "email": "lujiajing1126@gmail.com"
+  }],
   "license": "MIT",
   "scripts": {
     "build": "babel --out-dir dist src",
