@@ -20,60 +20,64 @@ describe('<Switch />', () => {
 
   describe('given multiple exact routes', () => {
     it('should match /', () => {
+      const {lastFrame} = render(
+        <Router>
+          <Switch>
+            <Route path="/" exact component={() => 'A'} />
+            <Route path="/B" component={() => 'B'} />
+            <Route path="/C" component={() => 'C'} />
+          </Switch>
+        </Router>
+      )
       expect(
-        render(
-          <Router>
-            <Switch>
-              <Route path="/" exact component={() => 'A'} />
-              <Route path="/B" component={() => 'B'} />
-              <Route path="/C" component={() => 'C'} />
-            </Switch>
-          </Router>
-        )
+        lastFrame()
       ).toBe('A')
     })
 
     it('should match /B', () => {
+      const {lastFrame} = render(
+        <Router initialEntries={['/B']}>
+          <Switch>
+            <Route path="/" exact component={() => 'A'} />
+            <Route path="/B" component={() => 'B'} />
+            <Route path="/C" component={() => 'C'} />
+          </Switch>
+        </Router>
+      )
       expect(
-        render(
-          <Router initialEntries={['/B']}>
-            <Switch>
-              <Route path="/" exact component={() => 'A'} />
-              <Route path="/B" component={() => 'B'} />
-              <Route path="/C" component={() => 'C'} />
-            </Switch>
-          </Router>
-        )
+        lastFrame()
       ).toBe('B')
     })
 
     it('should match /C', () => {
+      const {lastFrame} = render(
+        <Router initialEntries={['/B']}>
+          <Switch>
+            <Route path="/" exact component={() => 'A'} />
+            <Route path="/B" component={() => 'B'} />
+            <Route path="/C" component={() => 'C'} />
+          </Switch>
+        </Router>
+      )
       expect(
-        render(
-          <Router initialEntries={['/B']}>
-            <Switch>
-              <Route path="/" exact component={() => 'A'} />
-              <Route path="/B" component={() => 'B'} />
-              <Route path="/C" component={() => 'C'} />
-            </Switch>
-          </Router>
-        )
+        lastFrame()
       ).toBe('B')
     })
   })
 
   describe('given multiple inexact routes', () => {
     it('can match multiple', () => {
+      const {lastFrame} = render(
+        <Router initialEntries={['/B']}>
+          <Switch>
+            <Route path="/" component={() => 'A'} />
+            <Route path="/B" component={() => 'B'} />
+            <Route path="/C" component={() => 'C'} />
+          </Switch>
+        </Router>
+      )
       expect(
-        render(
-          <Router initialEntries={['/B']}>
-            <Switch>
-              <Route path="/" component={() => 'A'} />
-              <Route path="/B" component={() => 'B'} />
-              <Route path="/C" component={() => 'C'} />
-            </Switch>
-          </Router>
-        )
+        lastFrame()
       ).toBe('B')
     })
   })
