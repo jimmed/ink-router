@@ -1,11 +1,12 @@
-import { h, renderToString } from 'ink'
+import React from 'react';
+import { render } from 'ink-testing-library'
 import Route from './route'
 import Router from './router'
 
 describe('<Route />', () => {
   describe('given a single route with default props', () => {
     it('should render the component', () => {
-      const rendered = renderToString(
+      const rendered = render(
         <Router>
           <Route component={() => 'Hello'} />
         </Router>
@@ -17,7 +18,7 @@ describe('<Route />', () => {
   describe('given multiple exact routes', () => {
     it('should match /', () => {
       expect(
-        renderToString(
+        render(
           <Router>
             <Route path="/" exact component={() => 'A'} />
             <Route path="/B" component={() => 'B'} />
@@ -29,7 +30,7 @@ describe('<Route />', () => {
 
     it('should match /B', () => {
       expect(
-        renderToString(
+        render(
           <Router initialEntries={['/B']}>
             <Route path="/" exact component={() => 'A'} />
             <Route path="/B" component={() => 'B'} />
@@ -41,7 +42,7 @@ describe('<Route />', () => {
 
     it('should match /C', () => {
       expect(
-        renderToString(
+        render(
           <Router initialEntries={['/B']}>
             <Route path="/" exact component={() => 'A'} />
             <Route path="/B" component={() => 'B'} />
@@ -55,7 +56,7 @@ describe('<Route />', () => {
   describe('given multiple inexact routes', () => {
     it('can match multiple', () => {
       expect(
-        renderToString(
+        render(
           <Router initialEntries={['/B']}>
             <Route path="/" component={() => 'A'} />
             <Route path="/B" component={() => 'B'} />

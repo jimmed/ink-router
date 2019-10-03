@@ -1,6 +1,10 @@
-import { h, Text, renderToString } from 'ink'
+import React, { Component } from 'react'
+import { Text } from 'ink'
+import { render } from 'ink-testing-library'
 import withRouter from './withRouter'
 import Router from './router'
+import { RouteContext } from './router'
+
 
 describe('withRouter', () => {
   describe('when wrapping a component', () => {
@@ -17,13 +21,14 @@ describe('withRouter', () => {
   describe('when mounted outside of a Router context', () => {
     let WrappedComponent
     beforeEach(() => {
-      WrappedComponent = withRouter(() => {})
+      const VerifyNull = ({location}) => {
+        expect(location).toBeNull();
+        return null;
+      }
+      WrappedComponent = withRouter(VerifyNull)
     })
-
-    it('should throw an error', () => {
-      expect(() => {
-        renderToString(<WrappedComponent />)
-      }).toThrow(/must be rendered in the context/)
+    it('should equal to default value of the context', () => {
+      render(<WrappedComponent />)
     })
   })
 
@@ -36,7 +41,7 @@ describe('withRouter', () => {
     })
 
     it('should pass a location prop', () => {
-      const rendered = renderToString(
+      render(
         <Router>
           <WrappedComponent />
         </Router>
@@ -49,7 +54,7 @@ describe('withRouter', () => {
     })
 
     it('should pass a history prop', () => {
-      const rendered = renderToString(
+      render(
         <Router>
           <WrappedComponent />
         </Router>

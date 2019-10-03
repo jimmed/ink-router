@@ -19,24 +19,27 @@
   },
   "dependencies": {
     "history": "^4.10.1",
-    "ink": "^0.4.1",
-    "ink-broadcast": "^0.3.0",
+    "ink": "^2.4.0",
     "path-to-regexp": "^3.1.0",
     "prop-types": "^15.7.2",
+    "react": "^16.10.1",
     "yargs-parser": "^14.0.0"
   },
   "peerDependencies": {
-    "ink": "^0.4.1"
+    "ink": "^2.4.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.6.2",
     "babel-jest": "^24.9.0",
+    "ink-testing-library": "^1.0.2",
     "jest": "^24.9.0",
     "jest-junit": "^8.0.0"
   },

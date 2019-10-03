@@ -1,4 +1,5 @@
-import { h, Text, Indent } from 'ink'
+import React from 'react'
+import { Text, Indent } from 'ink'
 
 const NotFound = ({ location = {}, children = [] }) => (
   <div>

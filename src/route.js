@@ -1,4 +1,4 @@
-import { h, Component } from 'ink'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import withRouter from './withRouter'
 import { makeLocationMatcher } from './utils'

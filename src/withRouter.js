@@ -1,13 +1,11 @@
-import { h, Component } from 'ink'
+import React from 'react'
 import PropTypes from 'prop-types'
-import makeSubscriber from 'ink-broadcast/dist/subscriber'
-
-const Subscriber = makeSubscriber('router')
+import { RouteContext } from './router'
 
 const withRouter = WrappedComponent => (props) => (
-  <Subscriber>
+  <RouteContext.Consumer>
     {(state = {}) => <WrappedComponent {...props} {...state} />}
-  </Subscriber>
+  </RouteContext.Consumer>
 )
 
 export default withRouter
