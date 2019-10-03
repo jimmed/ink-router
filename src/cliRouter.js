@@ -16,13 +16,14 @@ class CommandLineRouter extends Component {
     initialEntries: []
   }
 
-  render({
-    args,
-    options,
-    initialEntries,
-    initialIndex = initialEntries.length,
-    ...restProps
-  }) {
+  render() {
+    let {
+      args,
+      options,
+      initialEntries,
+      initialIndex = initialEntries.length,
+      ...restProps
+    } = this.props
     const initialLocation = argsToLocation(argParser(args, options))
     return (
       <Router

@@ -8,14 +8,14 @@ class Switch extends Component {
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.shape({
-        _props: PropTypes.shape({
+        props: PropTypes.shape({
           path: PropTypes.string,
           exact: PropTypes.bool
         })
       }),
       PropTypes.arrayOf(
         PropTypes.shape({
-          _props: PropTypes.shape({
+          props: PropTypes.shape({
             path: PropTypes.string,
             exact: PropTypes.bool
           })
