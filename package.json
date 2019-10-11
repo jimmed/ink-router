@@ -1,14 +1,11 @@
 {
-  "name": "ink-router",
+  "name": "@lujiajing1126/ink-router",
   "version": "2.4.0",
   "description": "Implementation of react-router for ink",
   "main": "dist/index.js",
   "homepage": "https://github.com/jimmed/ink-router",
   "bugs": "https://github.com/jimmed/ink-router/issues",
-  "repository": {
-    "url": "https://github.com/jimmed/ink-router",
-    "type": "git"
-  },
+  "repository": "git://github.com/lujiajing1126/ink-router.git",
   "author": "Jim O'Brien <jim@jimmed.net>",
   "contributors": [{
     "name": "Megrez Lu",

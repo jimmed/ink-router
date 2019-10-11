@@ -4,3 +4,4 @@ node_modules/*
 junit.xml
 reports/*
 .vscode
+.npmrc
