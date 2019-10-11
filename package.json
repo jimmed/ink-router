@@ -1,5 +1,5 @@
 {
-  "name": "ink-router",
+  "name": "@giusto/ink-router",
   "version": "2.4.0",
   "description": "Implementation of react-router for ink",
   "main": "dist/index.js",
@@ -19,7 +19,6 @@
     "watch": "yarn run build --watch",
     "test": "jest src",
     "prepublishOnly": "yarn run test && yarn run build",
-    "install": "[ -d dist ] || npm run-script build"
   },
   "dependencies": {
     "history": "^4.10.1",
