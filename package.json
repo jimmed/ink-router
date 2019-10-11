@@ -1,5 +1,5 @@
 {
-  "name": "@lujiajing1126/ink-router",
+  "name": "ink-router",
   "version": "2.4.0",
   "description": "Implementation of react-router for ink",
   "main": "dist/index.js",
@@ -7,16 +7,19 @@
   "bugs": "https://github.com/jimmed/ink-router/issues",
   "repository": "git://github.com/lujiajing1126/ink-router.git",
   "author": "Jim O'Brien <jim@jimmed.net>",
-  "contributors": [{
-    "name": "Megrez Lu",
-    "email": "lujiajing1126@gmail.com"
-  }],
+  "contributors": [
+    {
+      "name": "Megrez Lu",
+      "email": "lujiajing1126@gmail.com"
+    }
+  ],
   "license": "MIT",
   "scripts": {
     "build": "babel --out-dir dist src",
     "watch": "yarn run build --watch",
     "test": "jest src",
-    "prepublishOnly": "yarn run test && yarn run build"
+    "prepublishOnly": "yarn run test && yarn run build",
+    "install": "[ -d dist ] || npm build"
   },
   "dependencies": {
     "history": "^4.10.1",
