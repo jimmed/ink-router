@@ -1,20 +1,26 @@
-import { h, Text, Component } from 'ink'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { inspect } from 'util'
 import NotFound from './notFound'
 import withRouter from './withRouter'
 import { makeLocationMatcher } from './utils'
 
 class Switch extends Component {
   static propTypes = {
-    children: PropTypes.arrayOf(
+    children: PropTypes.oneOfType([
       PropTypes.shape({
-        _props: PropTypes.shape({
+        props: PropTypes.shape({
           path: PropTypes.string,
           exact: PropTypes.bool
         })
-      })
-    ).isRequired,
+      }),
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          props: PropTypes.shape({
+            path: PropTypes.string,
+            exact: PropTypes.bool
+          })
+        })
+      ).isRequired]),
     notFound: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.instanceOf(Component)
@@ -26,13 +32,13 @@ class Switch extends Component {
     notFound: NotFound
   }
 
-  constructor(props, context) {
-    super(props, context)
-    this.setPathsToMatch(props)
-    this.state = this.matchLocation(props.location)
+  constructor(props) {
+    super(props)
+    this.setPathsToMatch(this.props)
+    this.state = this.matchLocation(this.props.location)
   }
 
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps(newProps) {
     if (newProps.children !== this.props.children) {
       this.setPathsToMatch(newProps)
     }
@@ -45,9 +51,14 @@ class Switch extends Component {
   }
 
   setPathsToMatch({ children }) {
-    this.locationMatchers = children.map(({ _props: { path = '/', exact } }) =>
-      makeLocationMatcher(path, exact)
-    )
+    if (Array.isArray(children)) {
+      this.locationMatchers = children.map(({ props: { path = '/', exact } }) =>
+        makeLocationMatcher(path, exact)
+      )
+    } else {
+      let { props: { path = '/', exact } } = children;
+      this.locationMatchers = [ makeLocationMatcher(path, exact) ]
+    }
   }
 
   matchLocation(location) {
@@ -64,16 +75,15 @@ class Switch extends Component {
     this.setState(this.matchLocation(location))
   }
 
-  render(
-    { children, location, history, notFound: NotFound },
-    { match, matchIndex }
-  ) {
+  render() {
+    let { children, location, history, notFound: NotFound } = this.props
+    let { match, matchIndex } = this.state
     if (!match) {
       return (
         <NotFound location={location} history={history} children={children} />
       )
     }
-    return children[matchIndex]
+    return React.Children.toArray(children)[matchIndex]
   }
 }
 

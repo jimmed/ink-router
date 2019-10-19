@@ -1,9 +1,11 @@
-import { h, Component } from 'ink'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import createHistory from 'history/createMemoryHistory'
-import makeBroadcaster from 'ink-broadcast/dist/broadcast'
-
-const Broadcast = makeBroadcaster('router')
+import { createMemoryHistory } from 'history'
+const defaultValue = {
+  location: null,
+  history: null
+}
+export const RouteContext = React.createContext(defaultValue)
 
 export default class Router extends Component {
   static propTypes = {
@@ -34,7 +36,7 @@ export default class Router extends Component {
 
   constructor(props, context) {
     super(props, context)
-    this.history = createHistory({
+    this.history = createMemoryHistory({
       initialEntries: props.initialEntries,
       initialIndex: props.initialIndex,
       keyLength: props.keyLength,
@@ -59,12 +61,13 @@ export default class Router extends Component {
 
   compareStates = (prev, next) => prev.location.key === next.location.key
 
-  render({ children }, { location }) {
+  render() {
+    const location = this.state.location
     const broadcastValue = { location, history: this.history }
     return (
-      <Broadcast value={broadcastValue} compareValues={this.compareStates}>
-        {children}
-      </Broadcast>
+      <RouteContext.Provider value={broadcastValue} compareValues={this.compareStates}>
+        {this.props.children}
+      </RouteContext.Provider>
     )
   }
 }

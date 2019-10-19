@@ -1,4 +1,4 @@
-import { h, Component } from 'ink'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import argParser from 'yargs-parser'
 import Router from './router'
@@ -16,13 +16,14 @@ class CommandLineRouter extends Component {
     initialEntries: []
   }
 
-  render({
-    args,
-    options,
-    initialEntries,
-    initialIndex = initialEntries.length,
-    ...restProps
-  }) {
+  render() {
+    let {
+      args,
+      options,
+      initialEntries,
+      initialIndex = initialEntries.length,
+      ...restProps
+    } = this.props
     const initialLocation = argsToLocation(argParser(args, options))
     return (
       <Router
